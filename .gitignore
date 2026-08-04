@@ -1,0 +1,141 @@
+# ==============================
+# Operating system files
+# ==============================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+
+
+# ==============================
+# Python cache and compiled files
+# ==============================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+
+# ==============================
+# Virtual environments
+# ==============================
+
+.venv/
+venv/
+env/
+ENV/
+conda-env/
+
+
+# ==============================
+# Environment variables and secrets
+# ==============================
+
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+
+# ==============================
+# Jupyter Notebook files
+# ==============================
+
+.ipynb_checkpoints/
+.profile_default/
+.ipython/
+
+
+# ==============================
+# IDE and editor settings
+# ==============================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+
+# ==============================
+# Python packaging
+# ==============================
+
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+
+# ==============================
+# Testing and coverage reports
+# ==============================
+
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+
+
+# ==============================
+# Type checking and linting cache
+# ==============================
+
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.pytype/
+
+
+# ==============================
+# Logs and temporary files
+# ==============================
+
+*.log
+*.tmp
+*.temp
+.cache/
+tmp/
+temp/
+
+
+# ==============================
+# Generated reports and outputs
+# ==============================
+
+outputs/
+reports/
+figures/
+
+
+# ==============================
+# Optional: trained model files
+# Uncomment these lines if model files
+# should not be stored in Git
+# ==============================
+
+# *.pkl
+# *.pickle
+# *.joblib
+# *.onnx
+
+
+# ==============================
+# Optional: large datasets
+# Uncomment these lines if datasets
+# should not be stored in Git
+# ==============================
+
+# data/
+# datasets/
+# *.csv
+# *.parquet
+# *.feather
