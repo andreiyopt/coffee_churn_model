@@ -1,55 +1,57 @@
 # Coffee Churn Prediction
 
-Модель прогнозирует вероятность оттока клиентов сервиса доставки кофе Happy Beans Coffee.
+This model predicts the probability of customer churn for the Happy Beans Coffee delivery service.
 
-## Загрузка и использование модели
+## Project Task
 
-Модель сохранена вместе с полным pipeline предобработки и метаданными.
+Build an interpretable binary classification model to predict customer churn for a coffee delivery service.
+
+The project required:
+
+- exploratory data analysis and data quality checks;
+- handling missing values, invalid values, outliers and categorical features;
+- preventing data leakage through pipeline-based preprocessing;
+- building a `DummyClassifier` baseline and a `LogisticRegression` model;
+- feature engineering and feature selection experiments;
+- cross-validation and hyperparameter tuning;
+- evaluation primarily with PR-AUC, alongside Precision, Recall, F1 and Log Loss;
+- selection of an appropriate classification threshold;
+- final evaluation on a held-out test set;
+- saving the complete preprocessing + model pipeline for further use.
+
+## Loading and Using the Model
+
+The model is saved together with the complete preprocessing pipeline and metadata.
 
 ```python
 import joblib
 
-# загрузка модели
+# Load the model
 artifact = joblib.load('models/coffee_churn_model.joblib')
 
 pipeline = artifact['pipeline']
 threshold = artifact['metadata']['threshold']
 
-# X_new — исходные данные в том же формате, что и обучающая выборка
+# X_new contains raw data in the same format as the training set
 y_proba = pipeline.predict_proba(X_new)[:, 1]
 
-# применяем сохранённый порог классификации
+# Apply the saved classification threshold
 y_pred = (y_proba >= threshold).astype(int)
 ```
 
-Используется сохранённый `threshold = 0.3`, поэтому итоговый класс определяется через `predict_proba()`.
+The saved `threshold = 0.3` is used, so the final class is determined from the probabilities returned by `predict_proba()`.
 
-Pipeline самостоятельно выполняет создание новых признаков, обработку пропусков, кодирование категориальных признаков и масштабирование.
+The pipeline automatically performs feature engineering, missing-value handling, categorical-feature encoding, and scaling.
 
-## Задача проекта
+## Final Model
 
-Цель проекта — выявлять клиентов с повышенным риском оттока, чтобы компания могла заранее применять меры по их удержанию.
-
-Основная модель — `LogisticRegression`. Для сравнения использован `DummyClassifier`.
-
-В ходе проекта выполнены:
-
-- EDA и предобработка данных;
-- создание новых признаков;
-- кросс-валидация;
-- анализ и отбор признаков;
-- подбор `C`, `max_iter` и `threshold`;
-- финальная проверка на отложенной тестовой выборке.
-
-## Финальная модель
-
-Параметры:
+Parameters:
 
 - `C = 0.01`
 - `max_iter = 100`
 - `threshold = 0.3`
 
-Результаты на тестовой выборке:
+Held-out test-set results:
 
 - Precision: **0.636**
 - Recall: **0.651**
@@ -57,4 +59,4 @@ Pipeline самостоятельно выполняет создание нов
 - PR-AUC: **0.714**
 - Log Loss: **0.113**
 
-Модель обнаруживает около **65% реально уходящих клиентов**, сохраняя Precision около **64%**.
+The model identifies approximately **65% of customers who actually churn**, while maintaining Precision of approximately **64%**.
